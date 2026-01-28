@@ -15,6 +15,7 @@ from probability import get_adjusted_probability
 TOKEN = None
 LAST_TOKEN_TIME = 0
 TOKEN_EXPIRY = 3300
+TOKEN_EXPIRY = 3600
 
 bankroll = config.INITIAL_BANKROLL
 sim_positions = []
@@ -35,6 +36,11 @@ def refresh_token():
         TOKEN = get_token()
         LAST_TOKEN_TIME = time.time()
         return TOKEN
+    global TOKEN, LAST_TOKEN_TIME
+    if time.time() - LAST_TOKEN_TIME > TOKEN_EXPIRY or not TOKEN:
+        TOKEN = get_token()
+        LAST_TOKEN_TIME = time.time()
+    return TOKEN
 
 
 def normalize_price(price):
@@ -179,6 +185,8 @@ def check_kill_switch():
         config.KILL_SWITCH_ACTIVE = True
         return True
     return False
+    """Stub: resolve closed positions and update bankroll."""
+    return None
 
 
 def scan_loop():
@@ -245,6 +253,10 @@ def scan_loop():
             import traceback
 
             traceback.print_exc()
+            time.sleep(config.SCAN_INTERVAL)
+
+        except Exception as exc:
+            print(f"❌ Error: {exc}")
             time.sleep(30)
 
 
