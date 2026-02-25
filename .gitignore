@@ -1,0 +1,55 @@
+# Secrets & Credentials
+config.py
+kalshi_private_key.pem
+*.pem
+*.key
+.env
+
+# Database files
+*.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Logs
+*.log
+seer.log
+
+# Archives
+Archive.zip
+
+# macOS
+.DS_Store
+Seer.app/
+Seer.command
+Seer.png
+
+# Setup scripts (one-time use)
+setup_github.sh
+
+# Internal project notes
+COWORK_PROJECT_SUMMARY.md
+CHANGELOG.md
+QUICK_START.md
+
+# Dashboard internal docs
+dashboard/ENHANCEMENTS.md
+dashboard/QUICKSTART.md
+dashboard/README.md
+
+# Reset utility (one-time use)
+reset_paper_trades.py
+
+# IDE
+.vscode/
+.idea/
+
+# Test files with hardcoded credentials
+test_auth.py
+test_official_auth.py
+test_access.py
